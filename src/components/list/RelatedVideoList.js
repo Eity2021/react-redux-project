@@ -1,7 +1,38 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRelatedVideos } from "../../features/relatedVideos/relatedVideosSlice";
+import RelatedVideoListItem from "./RelatedVideoListItem";
+import Loading from "../ui/Loading";
+export default function RelatedVideoList({ tags, currentVideoId }) {
+  const dispatch = useDispatch();
+  const { relatedVideos, isError, isLoading, error } = useSelector(
+    (state) => state.relatedVideos
+  );
+  useEffect(() => {
+    dispatch(fetchRelatedVideos({ tags, id: currentVideoId }));
+  }, [currentVideoId, dispatch, tags]);
 
-export default function RelatedVideoList() {
+ let content;
+
+ if(isLoading) content = <Loading />
+
+ if(!isLoading && isError) content =  <div className="col-span-12">{error}</div>;
+
+ if(!isLoading && !isError && relatedVideos?.length === 0 )  {
+   content = <div className="col-span-12">No Related Videos Found</div>;
+ }
+ if(!isLoading && !isError && relatedVideos?.length > 0 )  {
+   content = relatedVideos.map ((video) => (
+     <RelatedVideoListItem key={video.id} video={video}/>
+   ))
+ }
+
+
+
+
   return (
-    <div>RelatedVideoList</div>
-  )
+    <div className="col-pan-full lg:col-auto max-h-[570px] overflow-y-auto">
+     {content}
+    </div>
+  );
 }
