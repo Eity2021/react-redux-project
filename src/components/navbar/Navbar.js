@@ -5,16 +5,16 @@ import Search from "./Search";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
-    <nav class="bg-slate-100 shadow-md">
-      <div class="max-w-7xl mx-auto px-5 lg:px-0 flex justify-between py-3">
+    <nav className="bg-slate-100 shadow-md">
+      <div className="max-w-7xl mx-auto px-5 lg:px-0 flex justify-between py-3">
         <Link to="/">
           <img className="h-10" src={logoImage} alt="Learn with Sumit" />
         </Link>
-        <div class="border border-slate-200 flex items-center bg-white h-10 px-5 rounded-lg text-sm ring-emerald-200">
+        <div className="border border-slate-200 flex items-center bg-white h-10 px-5 rounded-lg text-sm ring-emerald-200">
           <Search></Search>
 
           <img
-            class="inline h-4 cursor-pointer"
+            className="inline h-4 cursor-pointer"
             src={searchImage}
             alt="Search"
           />

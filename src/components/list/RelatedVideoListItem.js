@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 export default function RelatedVideoListItem({video}) {
 const {id,thumbnail,duration,title,author,date,views} = video;
-console.log(video)
+
   return (
     <div className="w-full flex flex-row gap-2 mb-4">
     <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
